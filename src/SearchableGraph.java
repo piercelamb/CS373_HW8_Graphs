@@ -138,7 +138,46 @@ public class SearchableGraph<V, E> extends AbstractGraph<V, E> {
 
 	// TODO: comment header
 	public List<V> shortestPath(V v1, V v2) {
-		// TODO: implement this method
+		clearVertexInfo();
+		if (v1 == null || v2 == null){
+			throw new NullPointerException("null arguments");
+		}
+		if (this.containsVertex(v1) == false || this.containsVertex(v2) == false){
+			throw new IllegalArgumentException("doesnt contain vertex");
+		}
+		
+		List<V> shortest = new LinkedList<V>();
+		shortest.add(v1);
+		
+		if (v1.equals(v2)){
+			return shortest;
+		}
+		
+		Queue<V> pq = new PriorityQueue<V>(100, new VertexComparator());
+		
+		for (V vertex : this.vertices()){
+			Vertex<V> vInfo = vertexInfo(vertex);
+			vInfo.setCost(99999);
+			vInfo.setPrevious(null);
+			pq.add(vertex);
+		}
+		System.out.println(pq);
+		Vertex<V> v1Info = vertexInfo(v1);
+		v1Info.setCost(0);
 		return null;
 	}
+	
+		private class VertexComparator implements Comparator<V>{
+
+			@Override
+			public int compare(V v1, V v2) {
+				Vertex<V> v1Info = vertexInfo(v1);
+				Vertex<V> v2Info = vertexInfo(v2);
+				int first = v1Info.cost();
+				int second = v2Info.cost();
+				return first - second;
+			}
+	
+}
+	
 }

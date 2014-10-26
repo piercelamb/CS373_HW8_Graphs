@@ -4,5 +4,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/Users/plamb/git/CS373_HW8_Graphs/Graph.jar"/>
 	<classpathentry kind="lib" path="C:/Users/plamb/git/CS373_HW8_Graphs/guava-18.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lesley/git/CS373_HW8_Graphs/Graph.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lesley/git/CS373_HW8_Graphs/guava-18.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
