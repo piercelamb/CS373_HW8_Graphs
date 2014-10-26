@@ -155,29 +155,43 @@ public class SearchableGraph<V, E> extends AbstractGraph<V, E> {
 		
 		Queue<V> pq = new PriorityQueue<V>(100, new VertexComparator());
 		
-		for (V vertex : this.vertices()){
-			Vertex<V> vInfo = vertexInfo(vertex);
-			vInfo.setCost(99999);
-			vInfo.setPrevious(null);
-			pq.add(vertex);
-		}
-		System.out.println(pq);
 		Vertex<V> v1Info = vertexInfo(v1);
 		v1Info.setCost(0);
-		return null;
+		
+		for (V vertex : this.vertices()){
+			pq.add(vertex);
+		}
+		
+		while(!pq.isEmpty()){
+			V vtemp = pq.remove();
+			Vertex<V> testInfo = vertexInfo(vtemp);
+			testInfo.setVisited(true);
+			
+			Set<V> vtempneighbors = neighbors(vtemp);
+			for (V neighbor : vtempneighbors){
+				Vertex<V> neighborInfo = vertexInfo(neighbor);
+				if(neighborInfo.visited() == false){
+					neighborInfo.setVisited(true);
+					shortest.add(neighbor);
+				}
+		}
+		
 	}
+		return null;
 	
-		private class VertexComparator implements Comparator<V>{
+	}
+	private class VertexComparator implements Comparator<V>{
 
-			@Override
-			public int compare(V v1, V v2) {
-				Vertex<V> v1Info = vertexInfo(v1);
-				Vertex<V> v2Info = vertexInfo(v2);
-				int first = v1Info.cost();
-				int second = v2Info.cost();
-				return first - second;
-			}
-	
+		@Override
+		public int compare(V v1, V v2) {
+			Vertex<V> v1Info = vertexInfo(v1);
+			Vertex<V> v2Info = vertexInfo(v2);
+			int first = v1Info.cost();
+			int second = v2Info.cost();
+			return first - second;
+		}
+
+	}
 }
 	
-}
+
