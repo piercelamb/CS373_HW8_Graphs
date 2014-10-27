@@ -168,13 +168,20 @@ public class SearchableGraph<V, E> extends AbstractGraph<V, E> {
 			testInfo.setVisited(true);
 			
 			Set<V> vtempneighbors = neighbors(vtemp);
+			int cost = 0;
 			for (V neighbor : vtempneighbors){
 				Vertex<V> neighborInfo = vertexInfo(neighbor);
 				if(neighborInfo.visited() == false){
 					neighborInfo.setVisited(true);
-					shortest.add(neighbor);
+					cost = testInfo.cost()+this.edgeWeight(vtemp, neighbor);
+				}
+				if (cost < neighborInfo.cost()){
+					neighborInfo.setCost(cost);
+					neighborInfo.setPrevious(vtemp);
+					shortest.add(neighborInfo.previous());
 				}
 		}
+			return shortest;
 		
 	}
 		return null;

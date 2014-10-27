@@ -58,7 +58,6 @@ public class TestGraphABC {
 			System.out.println("  edge " + e + ": containsEdge(" + e + ")=" + graph.containsEdge(e));
 		}
 		
-
 		System.out.println("paths:");
 		for (V v1 : graph.vertices()) {
 			for (V v2 : graph.vertices()) {
